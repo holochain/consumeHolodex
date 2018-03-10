@@ -1,0 +1,58 @@
+{
+    "Version": 1,
+    "UUID": "2ba2c956-243d-11e8-9439-08002781aba8",
+    "Name": "consumerHolodex",
+    "Properties": {
+        "description": "provides an application template",
+        "language": "en"
+    },
+    "PropertiesSchemaFile": "properties_schema.json",
+    "BasedOn": {
+        "H": null
+    },
+    "Zomes": [
+        {
+            "Name": "sampleZome",
+            "Description": "provide a sample zome",
+            "CodeFile": "sampleZome.js",
+            "Entries": [
+                {
+                    "Name": "sampleEntry",
+                    "DataFormat": "json",
+                    "Schema": "",
+                    "SchemaFile": "sampleEntry.json",
+                    "Sharing": "public"
+                }
+            ],
+            "RibosomeType": "js",
+            "Functions": [
+                {
+                    "Name": "sampleEntryCreate",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "sampleEntryRead",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "doSampleAction",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                }
+            ],
+            "BridgeFuncs": null,
+            "BridgeTo": ""
+        }
+    ],
+    "RequiresVersion": 18,
+    "DHTConfig": {
+        "HashType": "sha2-256",
+        "NeighborhoodSize": 0
+    },
+    "Progenitor": {
+        "Identity": "",
+        "PubKey": null
+    }
+}
