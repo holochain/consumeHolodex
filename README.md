@@ -1,5 +1,5 @@
 # consumeHolodex
-Allications that consume the indexing(holdex) functionality can have two types of nodes:
+Applications that consume the indexing(holdex) functionality can have two types of nodes:
   - Index Nodes
     - Below will apply to these applications:
       - There will be holodex zome in dna.json.
