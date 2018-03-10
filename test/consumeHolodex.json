@@ -1,21 +1,34 @@
 {
     "Tests": [
         {
-            "Convey": "We can create a new sampleEntry",
-            "Zome": "",
-            "FnName": "sampleEntryCreate",
-            "Input": {
-                "body": "this is the entry body",
-                "stamp": 12345
-            },
-            "Output": "\"%h1%\"",
+            "Convey": "Create First Object",
+            "Zome": "consumeHolodex",
+            "FnName": "indexPost",
+            "Input": {"content":"holodex : We are Indexing this content using holodex app. this","details":"can include timestamp, etc."},
+            "Output": "\"QmYZEj5N2zMuVBATP8cVSHAtF5an8VE4YZVcPsnLATPmbG\"",
             "Err": "",
             "Regexp": "",
-            "Time": 0,
-            "Wait": 0,
-            "Exposure": "public",
-            "Raw": false,
-            "Repeat": 0
+            "Exposure": "public"
+        },
+        {
+            "Convey": "Create Second Object",
+            "Zome": "consumeHolodex",
+            "FnName": "indexPost",
+            "Input" : {"content":"holodex can also be used for searching keywords","details":"can include timestamp,lication, etc."},
+            "Output": "\"QmNTFhCuQhUQPCverEff4zFr6b54FgLnrnBuGWyGfYaofV\"",
+            "Exposure":"public",
+            "Err": "",
+            "Regexp": ""
+        },
+        {
+            "Convey": "Search function test for keywords existing in both objects",
+            "Zome": "consumeHolodex",
+            "FnName": "searchPosts",
+            "Input" : "holodex,We are searching:here,holodex",
+            "Output": "[\"QmNTFhCuQhUQPCverEff4zFr6b54FgLnrnBuGWyGfYaofV\",\"QmYZEj5N2zMuVBATP8cVSHAtF5an8VE4YZVcPsnLATPmbG\"]",
+            "Exposure":"public",
+            "Err": "",
+            "Regexp": ""
         }
     ],
     "Identity": "",

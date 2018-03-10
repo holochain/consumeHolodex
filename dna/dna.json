@@ -1,9 +1,9 @@
 {
     "Version": 1,
     "UUID": "2ba2c956-243d-11e8-9439-08002781aba8",
-    "Name": "consumerHolodex",
+    "Name": "consumeHolodex",
     "Properties": {
-        "description": "provides an application template",
+        "description": "sample application to bridge to holodex",
         "language": "en"
     },
     "PropertiesSchemaFile": "properties_schema.json",
@@ -12,39 +12,126 @@
     },
     "Zomes": [
         {
-            "Name": "sampleZome",
-            "Description": "provide a sample zome",
-            "CodeFile": "sampleZome.js",
+            "Name": "consumeHolodex",
+            "Description": "Main application zome",
+            "RibosomeType": "js",
+            "CodeFile": "consumeHolodex.js",
             "Entries": [
                 {
-                    "Name": "sampleEntry",
+                    "Name": "post",
                     "DataFormat": "json",
                     "Schema": "",
-                    "SchemaFile": "sampleEntry.json",
+                    "SchemaFile": "post.json",
                     "Sharing": "public"
-                }
+                },
+                {
+                    "Name": "post_links",
+                    "DataFormat": "links"
+                },
             ],
             "RibosomeType": "js",
             "Functions": [
                 {
-                    "Name": "sampleEntryCreate",
+                    "Name": "indexPost",
                     "CallingType": "json",
                     "Exposure": "public"
                 },
                 {
-                    "Name": "sampleEntryRead",
-                    "CallingType": "json",
-                    "Exposure": "public"
-                },
-                {
-                    "Name": "doSampleAction",
+                    "Name": "searchPosts",
                     "CallingType": "json",
                     "Exposure": "public"
                 }
             ],
             "BridgeFuncs": null,
-            "BridgeTo": ""
-        }
+            "BridgeTo": "QmTKXahA2Pb27z6efciJqH5g57rqH5Le3wD3XWhnJiEC9j"
+        },
+        {
+          "Name": "holodex",
+          "Description": "Zome dealing with functions relating to node to node communication and selection for index nodes",
+          "RibosomeType": "js",
+          "CodeFile": "holodex.js",
+          "Entries": [
+            {
+                "Name": "VolunteerNode",
+                "DataFormat": "string",
+                "Sharing": "public"
+            },
+            {
+                "Name": "volunteer_link",
+                "DataFormat": "links",
+                "Sharing": "public"
+            }
+          ],
+          "Functions": [
+            {
+              "Name": "selectIndexNode",
+              "CallingType": "string",
+              "Exposure": "public"
+            },
+            {
+              "Name": "indexObject",
+              "CallingType": "json",
+              "Exposure": "public"
+            },
+            {
+              "Name": "searchContent",
+              "CallingType": "string",
+              "Exposure": "public"
+            }
+          ]
+        },
+        {
+            "Name": "anchor",
+            "Description": "Anchor zome",
+            "RibosomeType": "js",
+            "CodeFile": "anchor.js",
+            "Entries": [
+                {
+                    "Name": "anchor",
+                    "DataFormat": "json",
+                    "Sharing": "public",
+                    "SchemaFile": "anchor.json"
+                },
+                {
+                    "Name": "anchor_links",
+                    "DataFormat": "links",
+                    "Sharing": "public"
+                }
+            ],
+            "Functions": [
+                {
+                    "Name": "anchor_type_create",
+                    "CallingType": "string",
+                    "Exposure":"public"
+                },
+                {
+                  "Name": "addAnchor",
+                  "CallingType": "string",
+                  "Exposure":"public"
+                },
+                {
+                  "Name": "anchor_create",
+                  "CallingType": "json",
+                  "Exposure":"public"
+                },
+                {
+                  "Name": "anchor_update",
+                  "CallingType": "json",
+                  "Exposure":"public"
+                },
+                {
+                  "Name": "anchor_type_list",
+                  "CallingType": "string",
+                  "Exposure":"public"
+                },
+                {
+                  "Name": "anchor_list",
+                  "CallingType": "string",
+                  "Exposure":"public"
+                }
+
+              ]
+          }
     ],
     "RequiresVersion": 18,
     "DHTConfig": {
