@@ -87,58 +87,6 @@
               "Exposure": "public"
             }
           ]
-        },
-        {
-            "Name": "anchor",
-            "Description": "Anchor zome",
-            "RibosomeType": "js",
-            "CodeFile": "anchor.js",
-            "Entries": [
-                {
-                    "Name": "anchor",
-                    "DataFormat": "json",
-                    "Sharing": "public",
-                    "SchemaFile": "anchor.json"
-                },
-                {
-                    "Name": "anchor_links",
-                    "DataFormat": "links",
-                    "Sharing": "public"
-                }
-            ],
-            "Functions": [
-                {
-                    "Name": "anchor_type_create",
-                    "CallingType": "string",
-                    "Exposure":"public"
-                },
-                {
-                  "Name": "addAnchor",
-                  "CallingType": "string",
-                  "Exposure":"public"
-                },
-                {
-                  "Name": "anchor_create",
-                  "CallingType": "json",
-                  "Exposure":"public"
-                },
-                {
-                  "Name": "anchor_update",
-                  "CallingType": "json",
-                  "Exposure":"public"
-                },
-                {
-                  "Name": "anchor_type_list",
-                  "CallingType": "string",
-                  "Exposure":"public"
-                },
-                {
-                  "Name": "anchor_list",
-                  "CallingType": "string",
-                  "Exposure":"public"
-                }
-
-              ]
-          }
+        }
     ]
 }
