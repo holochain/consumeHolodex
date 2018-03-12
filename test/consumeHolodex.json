@@ -4,8 +4,8 @@
             "Convey": "Create First Object",
             "Zome": "consumeHolodex",
             "FnName": "indexPost",
-            "Input": {"content":"holodex : We are Indexing this content using holodex app. this","details":"can include timestamp, etc."},
-            "Output": "\"QmYZEj5N2zMuVBATP8cVSHAtF5an8VE4YZVcPsnLATPmbG\"",
+            "Input": {"message":"holodex : We are Indexing this content using holodex app. this","title":"Post1"},
+            "Output": "\"\\\"QmUETGhDefWqqFrXgPW2yS58D7UqorLydt2dzrWTwXDajs\\\"\""  ,
             "Err": "",
             "Regexp": "",
             "Exposure": "public"
@@ -14,8 +14,8 @@
             "Convey": "Create Second Object",
             "Zome": "consumeHolodex",
             "FnName": "indexPost",
-            "Input" : {"content":"holodex can also be used for searching keywords","details":"can include timestamp,lication, etc."},
-            "Output": "\"QmNTFhCuQhUQPCverEff4zFr6b54FgLnrnBuGWyGfYaofV\"",
+            "Input" : {"message":"holodex can also be used for searching keywords","title":"Post2"},
+            "Output": "\"\\\"Qmd2Z4kMsa9Hbpq8K3eEoAryfmvmfVUL4Q3HtL9RYXf6NH\\\"\"",
             "Exposure":"public",
             "Err": "",
             "Regexp": ""
@@ -25,7 +25,17 @@
             "Zome": "consumeHolodex",
             "FnName": "searchPosts",
             "Input" : "holodex,We are searching:here,holodex",
-            "Output": "[\"QmNTFhCuQhUQPCverEff4zFr6b54FgLnrnBuGWyGfYaofV\",\"QmYZEj5N2zMuVBATP8cVSHAtF5an8VE4YZVcPsnLATPmbG\"]",
+            "Output": "QmUETGhDefWqqFrXgPW2yS58D7UqorLydt2dzrWTwXDajs,Qmd2Z4kMsa9Hbpq8K3eEoAryfmvmfVUL4Q3HtL9RYXf6NH",
+            "Exposure":"public",
+            "Err": "",
+            "Regexp": ""
+        },
+        {
+            "Convey":"Search function test for keywords existing in only one of the objects",
+            "Zome": "consumeHolodex",
+            "FnName": "searchPosts",
+            "Input" : "content",
+            "Output": "QmUETGhDefWqqFrXgPW2yS58D7UqorLydt2dzrWTwXDajs",
             "Exposure":"public",
             "Err": "",
             "Regexp": ""
