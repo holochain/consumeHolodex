@@ -12,4 +12,4 @@ All tests running with current code. Run below command :
 
 `hcdev --bridgeTo=.../holodex test`
 
-work with bridgeTesting branch of holodex
+work with bridgeTesting branch of holodex(https://github.com/Holochain/holodex/tree/bridgeTesting)
