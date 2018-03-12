@@ -2,9 +2,14 @@
 Applications that consume the indexing(holdex) functionality can have two types of nodes:
   - Index Nodes
     - Below will apply to these applications:
-      - There will be holodex zome in dna.json.
-      - holodex code will be imported to the dna directory.
-      - anchor code will be imported(if not already done) for indexing. 
+      - holodex zome to be added in dna.json.
+      - holodex application code to be downloaded on the node. 
   - Non-index Nodes
     - Below will apply to these applications:
-      - There will be holodex zome in dna.json.
+      - holodex zome to be added in dna.json.
+
+All tests running with current code. Run below command :
+
+`hcdev --bridgeTo=.../holodex test`
+
+work with bridgeTesting branch of holodex
