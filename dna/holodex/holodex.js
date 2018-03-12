@@ -4,42 +4,29 @@ function genesis()
   return true;
 }
 
-function bridgeGenesis(HC.Bridge.From,"QmTKXahA2Pb27z6efciJqH5g57rqH5Le3wD3XWhnJiEC9j",VolunteerForIndex)                     //Volunteering Ratio to be added
+//function bridgeGenesis(HC.Bridge.To,"QmPYYGapCNLb9BAmV1WDRVmkhXGTzx9WZxaxqAjrdu8Ds5",VolunteerForIndex)                     //Volunteering Ratio to be added
+function bridgeHolodex(VolunteerForIndex)
 {
-  debug("bridgeGenesis called holodex --- consumeHolodex");
+  debug("bridgeGenesis called holodex --- consumeHolodex side ");
+  //VolunteerForIndex = appData;
   if(VolunteerForIndex == "true")
   {
-    var VolunteerNode = commit("VolunteerNode",VolunteerForIndex);
-    commit("volunteer_link",{Links:[{Base:App.Key.Hash,Link:VolunteerNode,Tag:"VolunteerNode"}]});
-    debug("VolunteerNode :"+ VolunteerNode);
-    var addSelfAsAnchor = {Anchor_Type:"IndexNodes",Anchor_Text:App.Key.Hash};
-
-                                                                    //Checking if the Index Node anchor tyoe is created
-    var anchorMainIndex = {Anchor_Type:"IndexNodes",Anchor_Text:""};
-    var amhash = makeHash("anchor",anchorMainIndex);
-    var checkexist = get(amhash,{GetMask:HC.GetMask.Sources});
-
-    if(checkexist != JSON.stringify(anchorMainIndex)){           //If there are no index nodes(anhor type), create Index node tyoe
-    //if(checkexist == HC.HashNotFound){                         //and add self as IndexNodes
-
-      debug("Creating anchor type IndexNodes");
-
-      var indN = call("anchor","anchor_type_create","IndexNodes");
-      debug("Index node type added successfully with hash : "+indN);
-      debug("Adding self to index nodes ... "+App.Key.Hash);
-       var lnk = call("anchor","anchor_create",addSelfAsAnchor);
-
-    }
-    else {                                                      //Else just add self as IndexNodes anchor
-      debug("Adding self to index nodes ... "+App.Key.Hash);
-        var lnk = call("anchor","anchor_create",addSelfAsAnchor);
-    }
-
+    var bridges = getBridges()
+  if (bridges.length === 0){
+    debug('Expecting bridged app holodex, run: hcdev --bridgeTo=../holodex test')
+    return null
+  }
+  var bridgeHash = bridges[0].ToApp
+  debug("bridge hash : "+bridgeHash);
+    var lnk = bridge(bridgeHash,"indexcontent","addToVolunteerNodes",VolunteerForIndex);
     //var ret = JSON.parse(lnk);
     //debug(ret[0]);
 
   }
-  return true;
+  else{
+    var lnk = "Not volunteering";
+  }
+  return lnk;
   /*else
   {
     var VolunteerNode = commit("VolunteerNode",VolunteerForIndex);
@@ -47,7 +34,6 @@ function bridgeGenesis(HC.Bridge.From,"QmTKXahA2Pb27z6efciJqH5g57rqH5Le3wD3XWhnJ
     return false;
   }*/
 }
-
 function selectIndexNode()
 {
 
@@ -81,7 +67,7 @@ function indexObject(object)
   debug("Hash of object : "+objHash);
 
   //var createIndex = send(indexNode,{type:"createIndex",content:object.content,hashOfObject:objHash,language:"English"})
-  var createIndex = bridge("QmTKXahA2Pb27z6efciJqH5g57rqH5Le3wD3XWhnJiEC9j","indexcontent","indexcontent",object)
+  var createIndex = bridge("QmPYYGapCNLb9BAmV1WDRVmkhXGTzx9WZxaxqAjrdu8Ds5","indexcontent","indexcontent",object)
   return createIndex;
 }
 
@@ -91,7 +77,7 @@ function searchContent(StringOfsearchKeywords)
   var indexNode = selectIndexNode();
   debug("Selected index node : "+indexNode);
   //var searchResults = send(indexNode,{type:"searchKeywords",searchString:StringOfsearchKeywords});
-  var searchResults = bridge("QmTKXahA2Pb27z6efciJqH5g57rqH5Le3wD3XWhnJiEC9j","indexcontent","searchKeywords",StringOfsearchKeywords);
+  var searchResults = bridge("QmPYYGapCNLb9BAmV1WDRVmkhXGTzx9WZxaxqAjrdu8Ds5","indexcontent","searchKeywords",StringOfsearchKeywords);
   return searchResults;
 }
 

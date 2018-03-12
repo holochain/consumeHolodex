@@ -1,9 +1,12 @@
-genesis(){
+function genesis(){
+	debug("From side genesis!")
 	return true;
 }
 
-function bridgeGenesis(){
-	debug("Wroking bridgeGenesis on To side");
+function bridgeGenesis(side,dna,appData){
+	debug("Wroking bridgeGenesis on From side :"+ side+" dna: "+dna+" appData: "+appData);
+		var lnk = call("holodex","bridgeHolodex","true");
+		debug(lnk);
 	return true;
 }
 

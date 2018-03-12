@@ -40,13 +40,15 @@ function addAnchor()
 function anchor_type_create(anchor_type)
 {
   var anchor_main_hash=getMainAchorHash();
+  //var am = get(anchor_main_hash);
   var new_anchorType= {Anchor_Type:anchor_type,Anchor_Text:""};
-
+  //debug("Main anchor hash : "+am);
   var key=commit("anchor",new_anchorType);
   debug("Anchor type "+anchor_type+" created with hash : "+key);
-  commit("anchor_links",{Links:[{Base:anchor_main_hash,Link:key,Tag:"Anchor_Type"}]});
+  var c = commit("anchor_links",{Links:[{Base:anchor_main_hash,Link:key,Tag:"Anchor_Type"}]});
+  //debug("Commit successful : "+c);
   var anctyplnk= getLinks(anchor_main_hash,"Anchor_Type",{Load:true});
-
+  //debug(anctyplnk);
   return anctyplnk[0]["Hash"];
 }
 

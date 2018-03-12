@@ -1,12 +1,15 @@
 {
     "Version": 1,
-    "UUID": "2ba2c956-243d-11e8-9439-08002781aba8",
+    "UUID": "15722d01-2584-11e8-b1ef-08002781aba8",
     "Name": "consumeHolodex",
     "Properties": {
         "description": "sample application to bridge to holodex",
         "language": "en"
     },
     "PropertiesSchemaFile": "properties_schema.json",
+    "DHTConfig": {
+      "HashType": "sha2-256"
+    },
     "BasedOn": {
         "H": null
     },
@@ -27,7 +30,7 @@
                 {
                     "Name": "post_links",
                     "DataFormat": "links"
-                },
+                }
             ],
             "RibosomeType": "js",
             "Functions": [
@@ -43,26 +46,20 @@
                 }
             ],
             "BridgeFuncs": null,
-            "BridgeTo": "QmTKXahA2Pb27z6efciJqH5g57rqH5Le3wD3XWhnJiEC9j"
+            "BridgeTo": "holodex"
         },
         {
           "Name": "holodex",
           "Description": "Zome dealing with functions relating to node to node communication and selection for index nodes",
           "RibosomeType": "js",
           "CodeFile": "holodex.js",
-          "Entries": [
-            {
-                "Name": "VolunteerNode",
-                "DataFormat": "string",
-                "Sharing": "public"
-            },
-            {
-                "Name": "volunteer_link",
-                "DataFormat": "links",
-                "Sharing": "public"
-            }
-          ],
+    
           "Functions": [
+            {
+              "Name":"bridgeHolodex",
+              "CallingType": "string",
+              "Exposure": "public"
+            },
             {
               "Name": "selectIndexNode",
               "CallingType": "string",
@@ -132,14 +129,5 @@
 
               ]
           }
-    ],
-    "RequiresVersion": 18,
-    "DHTConfig": {
-        "HashType": "sha2-256",
-        "NeighborhoodSize": 0
-    },
-    "Progenitor": {
-        "Identity": "",
-        "PubKey": null
-    }
+    ]
 }
