@@ -26,7 +26,6 @@ function bridgeHolodex(VolunteerForIndex)
 }
 function selectIndexNode()
 {
-
   var VolunteerNodeH = getLinks(App.DNA.Hash,"Volunteer_Node",{Load:true});
   debug("Volunteer node value :"+VolunteerNodeH[0]["Entry"])
 
@@ -54,10 +53,9 @@ function selectIndexNode()
 
 function indexObject(object)
 {
+  debug("indexObject function called..");
   var indexNode = selectIndexNode();
   debug("Selected index node : "+indexNode);
-  var objHash = makeHash("post",object);
-  debug("Hash of object : "+objHash);
 
   var bridges = getBridges()
   if (bridges.length === 0){
@@ -68,7 +66,7 @@ function indexObject(object)
   debug("bridge hash : "+bridgeHash);
 
   //var createIndex = send(indexNode,{type:"createIndex",content:object.content,hashOfObject:objHash,language:"English"})
-  var createIndex = bridge(bridgeHash,"indexcontent","IndexContent",{content:object.message,hashOfObject:objHash,language:"English"})
+  var createIndex = bridge(bridgeHash,"indexcontent","IndexContent",{content:object.obj.message,hashOfObject:object.hashPost,language:"English"})
   return createIndex;
 }
 
@@ -110,8 +108,7 @@ function validate(entry_type,entry,header,sources) {
 }
 
 function validateLink(linkingEntryType,baseHash,linkHash,tag,pkg,sources){
-    // this can only be "room_message_link" type which is linking from room to message
-//debug("LinkingEntry_type:"+linkingEntryType+" baseHash:"+baseHash+" linkHash:"+linkHash+" tag:"+tag+" pkg:"+pkg+" sources:"+sources);
+
 if(linkingEntryType=="anchor_links")
 return true;
 
