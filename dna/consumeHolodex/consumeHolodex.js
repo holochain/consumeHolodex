@@ -3,6 +3,7 @@ function genesis(){
 	return true;
 }
 
+//BridgeGenesis function for when indexing
 function bridgeGenesis(side,dna,appData){
 	debug("Wroking bridgeGenesis on From side :"+ side+" dna: "+dna+" appData: "+appData);
 		var lnk = call("holodex","bridgeHolodex","true");
@@ -10,6 +11,7 @@ function bridgeGenesis(side,dna,appData){
 	return true;
 }
 
+//Function used for indexing. Called the indexObject function from holodex zome
 function indexPost(object){
 
 	postObj = {
@@ -26,6 +28,8 @@ function getPost(hashOfPost){
 	var postData = get(hashOfPost);
 	return postData;
 }
+
+//Function used for searching. Called the searchContent function from holodex zome
 function searchPosts(searchString){
 	searchString = searchString.value;
 	debug("Searching for words : "+searchString);
@@ -43,6 +47,7 @@ function searchPosts(searchString){
 	return JSON.stringify(postsSearched);
 }
 
+//Below are some helper and valitate functions
 function isErr(result) {
     return ((typeof result === 'object') && result.name == "HolochainError");
 }
@@ -52,9 +57,8 @@ function validatePut(entry_type,entry,header,pkg,sources) {
 function validateCommit(entry_type,entry,header,pkg,sources) {
     return validate(entry_type,entry,header,sources);
 }
-// Local validate an entry before committing ???
+
 function validate(entry_type,entry,header,sources) {
-//debug("entry_type::"+entry_type+"entry"+entry+"header"+header+"sources"+sources);
     if (entry_type == "anchor_links"||entry_type == "anchor") {
       return true;
     }
@@ -62,13 +66,11 @@ function validate(entry_type,entry,header,sources) {
 }
 
 function validateLink(linkingEntryType,baseHash,linkHash,tag,pkg,sources){
-    // this can only be "room_message_link" type which is linking from room to message
-//debug("LinkingEntry_type:"+linkingEntryType+" baseHash:"+baseHash+" linkHash:"+linkHash+" tag:"+tag+" pkg:"+pkg+" sources:"+sources);
-if(linkingEntryType=="anchor_links")
-return true;
 
+	if(linkingEntryType=="anchor_links")
+		return true;
 
-return true;
+	return true;
 }
 function validateMod(entry_type,hash,newHash,pkg,sources) {return false;}
 function validateDel(entry_type,hash,pkg,sources) {return false;}

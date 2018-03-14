@@ -8,7 +8,6 @@ function genesis()
 function bridgeHolodex(VolunteerForIndex)
 {
   debug("bridgeGenesis called holodex --- consumeHolodex side ");
-  //VolunteerForIndex = appData;
   if(VolunteerForIndex == "true")
   {
     //var lnk = bridge(bridgeHash,"indexcontent","addToVolunteerNodes",App.Key.Hash);
@@ -98,9 +97,8 @@ function validatePut(entry_type,entry,header,pkg,sources) {
 function validateCommit(entry_type,entry,header,pkg,sources) {
     return validate(entry_type,entry,header,sources);
 }
-// Local validate an entry before committing ???
+
 function validate(entry_type,entry,header,sources) {
-//debug("entry_type::"+entry_type+"entry"+entry+"header"+header+"sources"+sources);
     if (entry_type == "anchor_links"||entry_type == "anchor") {
       return true;
     }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <div class="container">
+    <div class="col-md-6 col-lg-6">
       <h1>
         Create a post below:
       </h1>
@@ -23,17 +23,20 @@
         <input type="text" id="content" class="form-control" placeholder="Post message" aria-describedby="basic-addon1">
       </div>
 
-      <button id="postButton" type="button" name="button">Post</button>
-      <div id="iPosts">
+      <button class="btn btn-info" id="postButton" type="button" name="button">Post</button>
+      <div id="iPosts" class="smooth-scroll list-unstyled">
       </div>
     </div>
 
-    <div class="container">
+    <div class="col-md-6 col-lg-6">
+      <h1>
+        Search for posts below:
+      </h1>
       <div class="input-group">
         <span class="input-group-addon">Enter String to search</span>
         <input type="text" id="search" class="form-control" placeholder="Search string" aria-describedby="basic-addon1">
       </div>
-      <button id="searchButton" type="button" name="button">Search</button>
+      <button class="btn btn-info" id="searchButton" type="button" name="button">Search</button>
       <div id="sPosts">
       </div>
     </div>

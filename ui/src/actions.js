@@ -6,8 +6,11 @@ var htmlTitle = "";
 var htmlMsg = "";
 var indexedDisplay="#iPosts";
 var searchedDisplay = "#sPosts";
-var responseReceived = false;
+
+//adding events on buttons upon completion of page load
 $(document).ready(function(){
+
+  //Post button event
   $("#postButton").on("click",function(){
     console.log($("#content").val());
     post = {
@@ -24,6 +27,7 @@ $(document).ready(function(){
     });
   });
 
+  //Search button event
   $("#searchButton").on("click",function(){
     var searched = {
       value: $("#search").val()
@@ -41,14 +45,15 @@ $(document).ready(function(){
 
 });
 
+//Helper function to retrieve a post for display when you only have the post hash
 function getPostForDisplay(){
     send("getPost",getPostFor,function(response){
       postDisplay=response;
-      //console.log("PostDisplay value : "+postDisplay);
     });
 
 }
 
+//Function to display a post
 function displayPost(postObj,id,countFor){
   console.log("display Post called on : ");
   console.log(postObj);
@@ -65,6 +70,7 @@ function displayPost(postObj,id,countFor){
 
 }
 
+//function for constructing HTMl for display
 function constructPostHTML(id,countFor){
   var containerDiv = $(id).html();
   var count = incrementCount(countFor);
@@ -74,6 +80,7 @@ function constructPostHTML(id,countFor){
   return constructHtml;
 }
 
+//helper function used for creating HTML posts
 function incrementCount(countFor){
   if(countFor == "index"){
       htmlTagIndexCount = htmlTagIndexCount+1;
@@ -81,5 +88,20 @@ function incrementCount(countFor){
   if(countFor == "search"){
     htmlTagSearchCount = htmlTagSearchCount+1;
   }
-
 }
+
+//common function that can be used for calling a function
+function send(fn,data,resultFn) {
+    console.log("calling: " +fn+" with "+data);
+    $.post(
+        "/fn/consumeHolodex/"+fn,
+        data,
+        function(response) {
+            console.log("response: " + response);
+            resultFn(response);
+        }
+    ).error(function(response) {
+        console.log("response failed: " + response.responseText);
+    })
+    ;
+};

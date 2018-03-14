@@ -1,3 +1,7 @@
+body{
+  background-image: url("backgroundImg1.jpeg");
+  background-size: cover;
+}
 .container{
   margin: 20px !important;
   margin-left: auto !important;
@@ -10,4 +14,12 @@
 
 #iPosts, #sPosts{
   margin-top: 20px;
+}
+
+h1{
+  color: rgb(246, 243, 243);
+}
+
+input{
+  background-color: rgb(244, 230, 230) !important;
 }
