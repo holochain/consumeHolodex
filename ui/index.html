@@ -1,1 +1,44 @@
-<html><body>Your UI here!</body></html>
+<html>
+  <head>
+    <title>Indexing with holodex</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Create a post below:
+      </h1>
+      <div class="input-group">
+        <span class="input-group-addon">Title</span>
+        <input type="text" id="title" class="form-control" placeholder="Post title" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">Content</span>
+        <input type="text" id="content" class="form-control" placeholder="Post message" aria-describedby="basic-addon1">
+      </div>
+
+      <button id="postButton" type="button" name="button">Post</button>
+      <div id="iPosts">
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="input-group">
+        <span class="input-group-addon">Enter String to search</span>
+        <input type="text" id="search" class="form-control" placeholder="Search string" aria-describedby="basic-addon1">
+      </div>
+      <button id="searchButton" type="button" name="button">Search</button>
+      <div id="sPosts">
+      </div>
+    </div>
+
+    <script type="text/javascript" src="src/actions.js"></script>
+    <script type="text/javascript" src="hc.js"></script>
+  </body>
+</html>
