@@ -13,3 +13,7 @@ All tests running with current code. Run below command :
 `hcdev --bridgeTo=.../holodex test`
 
 work with bridgeTesting branch of holodex(https://github.com/Holochain/holodex/tree/bridgeTesting)
+
+Consume holodex UI can be run using below command along with the same holodex branch as above.
+
+`hcdev --bridgeTo=../holodex web`
