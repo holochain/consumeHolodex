@@ -24,8 +24,8 @@
             "Convey": "Search function test for keywords existing in both objects",
             "Zome": "consumeHolodex",
             "FnName": "searchPosts",
-            "Input" : {"value":"holodex,We are searching:here,holodex"},
-            "Output": "[\"{\\\"message\\\":\\\"holodex : We are Indexing this content using holodex app. this\\\",\\\"title\\\":\\\"Post1\\\"}\",\"{\\\"message\\\":\\\"holodex can also be used for searching keywords\\\",\\\"title\\\":\\\"Post2\\\"}\"]",
+            "Input" : "holodex,We are searching:here,holodex",
+            "Output": "QmUETGhDefWqqFrXgPW2yS58D7UqorLydt2dzrWTwXDajs,Qmd2Z4kMsa9Hbpq8K3eEoAryfmvmfVUL4Q3HtL9RYXf6NH",
             "Exposure":"public",
             "Err": "",
             "Regexp": ""
@@ -34,8 +34,8 @@
             "Convey":"Search function test for keywords existing in only one of the objects",
             "Zome": "consumeHolodex",
             "FnName": "searchPosts",
-            "Input" : {"value":"content"},
-            "Output": "[\"{\\\"message\\\":\\\"holodex : We are Indexing this content using holodex app. this\\\",\\\"title\\\":\\\"Post1\\\"}\"]",
+            "Input" : "content",
+            "Output": "QmUETGhDefWqqFrXgPW2yS58D7UqorLydt2dzrWTwXDajs",
             "Exposure":"public",
             "Err": "",
             "Regexp": ""
