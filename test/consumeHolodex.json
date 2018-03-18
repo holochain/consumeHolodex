@@ -5,7 +5,7 @@
             "Zome": "consumeHolodex",
             "FnName": "indexPost",
             "Input": {"message":"holodex : We are Indexing this content using holodex app. this","title":"Post1"},
-            "Output": "\"\\\"QmUETGhDefWqqFrXgPW2yS58D7UqorLydt2dzrWTwXDajs\\\"\""  ,
+            "Output":"\"\\\"%h%\\\"\""  ,
             "Err": "",
             "Regexp": "",
             "Exposure": "public"
@@ -15,7 +15,7 @@
             "Zome": "consumeHolodex",
             "FnName": "indexPost",
             "Input" : {"message":"holodex can also be used for searching keywords","title":"Post2"},
-            "Output": "\"\\\"Qmd2Z4kMsa9Hbpq8K3eEoAryfmvmfVUL4Q3HtL9RYXf6NH\\\"\"",
+            "Output":"\"\\\"%h%\\\"\""  ,
             "Exposure":"public",
             "Err": "",
             "Regexp": ""

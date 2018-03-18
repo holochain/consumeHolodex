@@ -6,6 +6,7 @@ var htmlTitle = "";
 var htmlMsg = "";
 var indexedDisplay="#iPosts";
 var searchedDisplay = "#sPosts";
+var searchFirstDisplay = true;
 
 //adding events on buttons upon completion of page load
 $(document).ready(function(){
@@ -37,6 +38,12 @@ $(document).ready(function(){
         response = JSON.parse(JSON.parse(response));
         console.log(typeof response);
         for(var i=0;i<response.length;i++){
+            if(i==0){
+              searchFirstDisplay = true;
+            }
+            else{
+              searchFirstDisplay = false;
+            }
             displayPost(response[i],searchedDisplay,"search");
         }
 
@@ -76,7 +83,19 @@ function constructPostHTML(id,countFor){
   var count = incrementCount(countFor);
   var headingID = "heading"+count;
   var collapseID = "collapse"+count;
-  var constructHtml = containerDiv+"<div class=\"card\"><div class=\"card-header\" id=\""+headingID+"\"><h5 class=\"mb-0\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#"+collapseID+"\" aria-expanded=\"true\" aria-controls=\""+collapseID+"\">"+htmlTitle+"</button></h5></div><div id=\""+collapseID+"\" class=\"collapse show\" aria-labelledby=\""+headingID+"\" data-parent=\""+id+"\"><div class=\"card-body\">"+htmlMsg+"</div></div></div>"
+  if(id=="#iPosts"){
+    var constructHtml = containerDiv+"<div class=\"card\"><div class=\"card-header\" id=\""+headingID+"\"><h5 class=\"mb-0\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#"+collapseID+"\" aria-expanded=\"true\" aria-controls=\""+collapseID+"\">"+htmlTitle+"</button></h5></div><div id=\""+collapseID+"\" class=\"collapse show\" aria-labelledby=\""+headingID+"\" data-parent=\""+id+"\"><div class=\"card-body\">"+htmlMsg+"</div></div></div>"
+  }
+  else{
+    if(searchFirstDisplay == true){
+        var constructHtml = "<div class=\"card\"><div class=\"card-header\" id=\""+headingID+"\"><h5 class=\"mb-0\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#"+collapseID+"\" aria-expanded=\"true\" aria-controls=\""+collapseID+"\">"+htmlTitle+"</button></h5></div><div id=\""+collapseID+"\" class=\"collapse show\" aria-labelledby=\""+headingID+"\" data-parent=\""+id+"\"><div class=\"card-body\">"+htmlMsg+"</div></div></div>"
+    }
+    else{
+      var constructHtml = containerDiv+"<div class=\"card\"><div class=\"card-header\" id=\""+headingID+"\"><h5 class=\"mb-0\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#"+collapseID+"\" aria-expanded=\"true\" aria-controls=\""+collapseID+"\">"+htmlTitle+"</button></h5></div><div id=\""+collapseID+"\" class=\"collapse show\" aria-labelledby=\""+headingID+"\" data-parent=\""+id+"\"><div class=\"card-body\">"+htmlMsg+"</div></div></div>"
+    }
+
+  }
+
   return constructHtml;
 }
 
