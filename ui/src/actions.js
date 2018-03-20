@@ -35,6 +35,7 @@ $(document).ready(function(){
     };
     searched = JSON.stringify(searched);
     send("searchPosts",searched,function(response){
+
         response = JSON.parse(JSON.parse(response));
         console.log(typeof response);
         for(var i=0;i<response.length;i++){
@@ -65,16 +66,29 @@ function displayPost(postObj,id,countFor){
   console.log("display Post called on : ");
   console.log(postObj);
   if(id=="#iPosts"){
-    var p = JSON.parse(JSON.parse(postObj));
+    var p = JSON.parse(postObj);
   }
   else{
-    var p = JSON.parse(postObj);
+    var p = postObj;
   }
   htmlTitle = p.title;
   htmlMsg = p.message;
   var htmlDisplay = constructPostHTML(id,countFor);
-  $(id).html(htmlDisplay);
 
+  if(id=="#iPosts"){
+    $(id).html(htmlDisplay);
+    $('.card').last().hide();
+    $('.card').last().show("300",function(){
+      //console.log("sliding down : ");
+      //console.log($(this));
+    });
+  }
+  else{
+    $(id).html(htmlDisplay).hide();
+    $(id).show('300',function(){
+
+    });
+  }
 }
 
 //function for constructing HTMl for display
@@ -89,9 +103,11 @@ function constructPostHTML(id,countFor){
   else{
     if(searchFirstDisplay == true){
         var constructHtml = "<div class=\"card\"><div class=\"card-header\" id=\""+headingID+"\"><h5 class=\"mb-0\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#"+collapseID+"\" aria-expanded=\"true\" aria-controls=\""+collapseID+"\">"+htmlTitle+"</button></h5></div><div id=\""+collapseID+"\" class=\"collapse show\" aria-labelledby=\""+headingID+"\" data-parent=\""+id+"\"><div class=\"card-body\">"+htmlMsg+"</div></div></div>"
+        console.log(constructHtml);
     }
     else{
       var constructHtml = containerDiv+"<div class=\"card\"><div class=\"card-header\" id=\""+headingID+"\"><h5 class=\"mb-0\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#"+collapseID+"\" aria-expanded=\"true\" aria-controls=\""+collapseID+"\">"+htmlTitle+"</button></h5></div><div id=\""+collapseID+"\" class=\"collapse show\" aria-labelledby=\""+headingID+"\" data-parent=\""+id+"\"><div class=\"card-body\">"+htmlMsg+"</div></div></div>"
+      console.log(constructHtml);
     }
 
   }
@@ -121,6 +137,7 @@ function send(fn,data,resultFn) {
         }
     ).error(function(response) {
         console.log("response failed: " + response.responseText);
+        alert("This keyword does not exist in any of the posts!");
     })
     ;
 };

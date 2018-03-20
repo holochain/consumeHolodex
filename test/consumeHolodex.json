@@ -25,7 +25,7 @@
             "Zome": "consumeHolodex",
             "FnName": "searchPosts",
             "Input" : {"value":"holodex,We are searching:here,holodex"},
-            "Output": "[\"{\\\"message\\\":\\\"holodex : We are Indexing this content using holodex app. this\\\",\\\"title\\\":\\\"Post1\\\"}\",\"{\\\"message\\\":\\\"holodex can also be used for searching keywords\\\",\\\"title\\\":\\\"Post2\\\"}\"]",
+            "Output": "[{\"message\":\"holodex : We are Indexing this content using holodex app. this\",\"title\":\"Post1\"},{\"message\":\"holodex can also be used for searching keywords\",\"title\":\"Post2\"}]",
             "Exposure":"public",
             "Err": "",
             "Regexp": ""
@@ -35,7 +35,7 @@
             "Zome": "consumeHolodex",
             "FnName": "searchPosts",
             "Input" : {"value":"content"},
-            "Output": "[\"{\\\"message\\\":\\\"holodex : We are Indexing this content using holodex app. this\\\",\\\"title\\\":\\\"Post1\\\"}\"]",
+            "Output": "[{\"message\":\"holodex : We are Indexing this content using holodex app. this\",\"title\":\"Post1\"}]",
             "Exposure":"public",
             "Err": "",
             "Regexp": ""
