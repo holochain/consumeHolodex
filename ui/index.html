@@ -5,43 +5,85 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <div class="col-md-6 col-lg-6">
-      <h1>
-        Create a post below:
-      </h1>
-      <div class="input-group">
-        <span class="input-group-addon">Title</span>
-        <input type="text" id="title" class="form-control" placeholder="Post title" aria-describedby="basic-addon1">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">Content</span>
-        <input type="text" id="content" class="form-control" placeholder="Post message" aria-describedby="basic-addon1">
-      </div>
 
-      <button class="btn btn-info" id="postButton" type="button" name="button">Post</button>
-      <div id="iPosts" class="disp">
+    <ul class="nav nav-pills nav-fill" role="tablist">
+      <li class="nav-item active">
+        <a class= "nav-link" href="#postsTab" role="tab" data-toggle="tab">Simple Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class= "nav-link" href="#wikiTab" role="tab" data-toggle="tab">Favourite your Wiki Pages</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="postsTab" class="tab-pane fade show active" role="tabpanel">
+        <div class="col-md-6 col-lg-6">
+          <h1>
+            Create a post below:
+          </h1>
+          <div class="input-group">
+            <span class="input-group-addon">Title</span>
+            <input type="text" id="title" class="form-control" placeholder="Post title" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">Content</span>
+            <input type="text" id="content" class="form-control" placeholder="Post message" aria-describedby="basic-addon1">
+          </div>
+
+          <button class="btn btn-info" id="postButton" type="button" name="button">Post</button>
+          <div id="iPosts" class="disp">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-6">
+          <h1>
+            Search for posts below:
+          </h1>
+          <div class="input-group">
+            <span class="input-group-addon">Enter String to search</span>
+            <input type="text" id="search" class="form-control" placeholder="Search string" aria-describedby="basic-addon1">
+          </div>
+          <button class="btn btn-info" id="searchButton" type="button" name="button">Search</button>
+          <div id="sPosts" class="disp">
+          </div>
+        </div>
+      </div>
+      <div id="wikiTab" class="tab-pane fade" role="tabpanel">
+        <div class="col-md-6 col-lg-6">
+          <h1>
+            Search on wiki by querying by keywords:
+          </h1>
+          <div class="input-group">
+            <span class="input-group-addon">Keywords Here</span>
+            <input type="text" id="wikiSave" class="form-control" placeholder="Wiki search keywords" aria-describedby="basic-addon1">
+          </div>
+
+          <button class="btn btn-info" id="saveButton" type="button" name="button">Save and Show</button>
+          <div id="iPages" class="disp">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-6">
+          <h1>
+            Search for your saved wiki posts below:
+          </h1>
+          <div class="input-group">
+            <span class="input-group-addon">Enter String to search</span>
+            <input type="text" id="searchWikiFavourites" class="form-control" placeholder="Search string" aria-describedby="basic-addon1">
+          </div>
+          <button class="btn btn-info" id="searchWikiButton" type="button" name="button">Search from Wiki Favourites</button>
+          <div id="sPages" class="disp">
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="col-md-6 col-lg-6">
-      <h1>
-        Search for posts below:
-      </h1>
-      <div class="input-group">
-        <span class="input-group-addon">Enter String to search</span>
-        <input type="text" id="search" class="form-control" placeholder="Search string" aria-describedby="basic-addon1">
-      </div>
-      <button class="btn btn-info" id="searchButton" type="button" name="button">Search</button>
-      <div id="sPosts" class="disp">
-      </div>
-    </div>
-
-    <script type="text/javascript" src="src/actions.js"></script>
-    
+    <script type="text/javascript" src="src/actions_posts.js"></script>
+    <script type="text/javascript" src="src/actions_wiki.js"></script>
   </body>
 </html>

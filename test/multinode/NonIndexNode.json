@@ -1,0 +1,42 @@
+{
+    "Tests":
+    [
+      {
+        "Convey":"Passing true to bridgeGenesis on NonIndexNode",
+        "Zome":"holodex",
+        "FnName":"bridgeHolodex",
+        "Input":"false",
+        "Output":"Not volunteering",
+        "Err":""
+      },
+      {
+          "Convey":"Non index Node 1 Chooses an index node for indexing",
+          "Zome":"consumeHolodex",
+          "FnName":"selectIndexNode",
+          "Input":"",
+          "Output":"%result1%",
+          "Err":"",
+          "Time":4500
+      },
+      {
+          "Convey":"Non index Node 1 indexes content",
+          "Zome":"consumeHolodex",
+          "FnName":"indexPost",
+          "Input":{"message":"holodex can also be used for searching keywords","title":"Post2"},
+          "Output":"\"QmNTFhCuQhUQPCverEff4zFr6b54FgLnrnBuGWyGfYaofV\"",
+          "Err":"",
+          "Time":5000
+      },
+      {
+          "Convey":"Search function test for keywords existing in only one of the objects",
+          "Zome": "consumeHolodex",
+          "FnName": "searchPosts",
+          "Input" : {"value":"holodex,We are searching:here,holodex"},
+          "Output": "[{\"message\":\"holodex : We are Indexing this content using holodex app. this\",\"title\":\"Post1\"},{\"message\":\"holodex can also be used for searching keywords\",\"title\":\"Post2\"}]",
+          "Exposure":"public",
+          "Err": "",
+          "Regexp": "",
+          "Time":4500
+      }
+    ]
+}

@@ -65,10 +65,11 @@ function getPostForDisplay(){
 function displayPost(postObj,id,countFor){
   console.log("display Post called on : ");
   console.log(postObj);
+  console.log("ID is : "+id);
   if(id=="#iPosts"){
     var p = JSON.parse(postObj);
   }
-  else{
+  else if(id=="#sPosts"){
     var p = postObj;
   }
   htmlTitle = p.title;
@@ -83,7 +84,7 @@ function displayPost(postObj,id,countFor){
       //console.log($(this));
     });
   }
-  else{
+  else if(id=="#sPosts"){
     $(id).html(htmlDisplay).hide();
     $(id).show('300',function(){
 

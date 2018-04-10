@@ -1,0 +1,48 @@
+{
+    "Tests": [
+        {
+            "Convey": "CreateIndex First wiki Object",
+            "Zome": "wikiPages",
+            "FnName": "indexPages",
+            "Input": {"htmlContent":"<HTML CONTENT of Jennifer Aniston page>","webLink":"https://www.en.wikipedia.org/wiki/Jennifer_Aniston","title":"Jennifer Aniston"},
+            "Output":"\"\\\"%h%\\\"\""  ,
+            "Err": "",
+            "Regexp": "",
+            "Exposure": "public"
+        },
+        {
+            "Convey": "CreateIndex Second wiki Object",
+            "Zome": "wikiPages",
+            "FnName": "indexPages",
+            "Input" : {"htmlContent":"<HTML CONTENT for Elon must page>","webLink":"https://www.en.wikipedia.org/wiki/Elon_Musk","title":"Elon Musk"},
+            "Output":"\"\\\"%h%\\\"\""  ,
+            "Exposure":"public",
+            "Err": "",
+            "Regexp": ""
+        },
+        {
+            "Convey": "Search function test for keywords existing in both objects",
+            "Zome": "wikiPages",
+            "FnName": "searchPages",
+            "Input" : {"value":"Some words"},
+            "Output": "[{\"message\":\"holodex : We are Indexing this content using holodex app. this\",\"title\":\"Post1\"},{\"message\":\"holodex can also be used for searching keywords\",\"title\":\"Post2\"}]",
+            "Exposure":"public",
+            "Err": "",
+            "Regexp": ""
+        },
+        {
+            "Convey":"Search function test for keywords existing in only Elon Musk object",
+            "Zome": "wikiPages",
+            "FnName": "searchPages",
+            "Input" : {"value":"Tesla"},
+            "Output": "[{\"message\":\"holodex : We are Indexing this content using holodex app. this\",\"title\":\"Post1\"}]",
+            "Exposure":"public",
+            "Err": "",
+            "Regexp": ""
+        }
+    ],
+    "Identity": "",
+    "Fixtures": {
+        "Agents": null
+    }
+}

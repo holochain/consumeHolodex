@@ -5,7 +5,7 @@ function genesis(){
 
 //BridgeGenesis function for when indexing
 function bridgeGenesis(side,dna,appData){
-	debug("Wroking bridgeGenesis on From side :"+ side+" dna: "+dna+" appData: "+appData);
+	debug("Working bridgeGenesis on From side :"+ side+" dna: "+dna+" appData: "+appData);
 		var lnk = call("holodex","bridgeHolodex","true");
 
 	return true;
@@ -18,12 +18,13 @@ function indexPost(object){
 		obj : object,
 		hashPost : commit("post",object)
 	} ;
-	debug("postObj");
+	debug("post");
 	debug(postObj);
 	var createIndex = call("holodex","indexObject",postObj);
 	var postHash = JSON.parse(JSON.parse(createIndex));
 	return createIndex;
 }
+
 function getPost(hashOfPost){
 	var postData = get(hashOfPost);
 	return postData;
@@ -45,6 +46,30 @@ function searchPosts(searchString){
 	debug("Returning object : ");
 	debug(postsSearched);
 	return JSON.stringify(postsSearched);
+}
+
+//Indexing wiki Pages
+
+function indexPages(object){
+	debug("Index pages called");
+	pageObjToCommit = {
+		title : object.title,
+		webLink : object.link
+	};
+	pageObj = {
+		obj : object,
+		hashPage : commit("pageObject",pageObjToCommit)
+	} ;
+	debug("pageObj");
+	debug(pageObj);
+	var createIndex = call("holodex","indexPages",pageObj);
+	var pageHash = JSON.parse(JSON.parse(createIndex));
+	return createIndex;
+}
+
+function getPage(hashOfPage){
+	var pageData = get(hashOfPage);
+	return pageData;
 }
 
 //Below are some helper and valitate functions

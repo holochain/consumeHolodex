@@ -19,6 +19,7 @@
             "Description": "Main application zome",
             "RibosomeType": "js",
             "CodeFile": "consumeHolodex.js",
+
             "Entries": [
                 {
                     "Name": "post",
@@ -29,6 +30,17 @@
                 },
                 {
                     "Name": "post_links",
+                    "DataFormat": "links"
+                },
+                {
+                    "Name": "pageObject",
+                    "DataFormat": "json",
+                    "Schema": "",
+                    "SchemaFile": "pageObject.json",
+                    "Sharing": "public"
+                },
+                {
+                    "Name": "pageObject_links",
                     "DataFormat": "links"
                 }
             ],
@@ -48,10 +60,18 @@
                     "Name": "getPost",
                     "CallingType": "json",
                     "Exposure": "public"
+                },
+                {
+                    "Name": "indexPages",
+                    "CallingType": "json",
+                    "Exposure": "public"
+                },
+                {
+                    "Name": "searchPages",
+                    "CallingType": "json",
+                    "Exposure": "public"
                 }
-            ],
-            "BridgeFuncs": null,
-            "BridgeTo": "holodex"
+            ]
         },
         {
           "Name": "holodex",
@@ -60,12 +80,12 @@
           "CodeFile": "holodex.js",
           "Entries": [
             {
-                "Name": "VolunteerNode",
+                "Name": "IndexVolunteerNode",
                 "DataFormat": "string",
                 "Sharing": "public"
             },
             {
-                "Name": "volunteer_links",
+                "Name": "IndexVolunteer_links",
                 "DataFormat": "links",
                 "Sharing": "public"
             }
@@ -89,6 +109,11 @@
             {
               "Name": "searchContent",
               "CallingType": "string",
+              "Exposure": "public"
+            },
+            {
+              "Name": "indexPages",
+              "CallingType": "json",
               "Exposure": "public"
             }
           ]

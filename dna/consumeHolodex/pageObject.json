@@ -1,0 +1,13 @@
+{
+    "title": "Page Schema",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "webLink": {
+            "type": "string"
+        }
+    },
+    "required": ["webLink","title"]
+}

@@ -7,12 +7,12 @@ function genesis()
 //function bridgeGenesis(HC.Bridge.To,"QmPYYGapCNLb9BAmV1WDRVmkhXGTzx9WZxaxqAjrdu8Ds5",VolunteerForIndex)                     //Volunteering Ratio to be added
 function bridgeHolodex(VolunteerForIndex)
 {
-  debug("bridgeGenesis called holodex --- consumeHolodex side ");
+  //debug("bridgeGenesis called holodex --- consumeHolodex side ");
   if(VolunteerForIndex == "true")
   {
     //var lnk = bridge(bridgeHash,"indexcontent","addToVolunteerNodes",App.Key.Hash);
-    var vol = commit("VolunteerNode",App.Key.Hash);
-    commit("volunteer_links",{Links:[{Base:App.DNA.Hash,Link:vol,Tag:"Volunteer_Node"}]})
+    var vol = commit("IndexVolunteerNode",App.Key.Hash);
+    commit("IndexVolunteer_links",{Links:[{Base:App.DNA.Hash,Link:vol,Tag:"IndexVolunteer_Node"}]})
 
     var lnk = get(vol);
     debug("Volunteer node added : "+ lnk);
@@ -25,27 +25,36 @@ function bridgeHolodex(VolunteerForIndex)
 }
 function selectIndexNode()
 {
-  var VolunteerNodeH = getLinks(App.DNA.Hash,"Volunteer_Node",{Load:true});
-  debug("Volunteer node value :"+VolunteerNodeH[0]["Entry"])
+  var thisNodeIsVolunteering = false;
+  var indexNodes=[];
+  debug("App DNA Hash : "+App.DNA.Hash);
+  var VolunteerNodeH = getLinks(App.DNA.Hash,"IndexVolunteer_Node",{Load:true});
+  debug("All Volunteer Nodes :");
+  debug(VolunteerNodeH);
 
-  if(VolunteerNodeH[0]["Entry"] == App.Key.Hash)
+  for(var i=0; i<VolunteerNodeH.length;i++){
+    if(VolunteerNodeH[i].Entry == App.Key.Hash){
+      thisNodeIsVolunteering = true
+    }
+  }
+  if(thisNodeIsVolunteering == true)
   {
     var key = App.Key.Hash;
   }
   else
   {
-    var l = getLinks(App.DNA.Hash,"Volunteer_Node",{Load:true});
-    var indexNodes=[];
-    for(var i=0;i<l.length;i++){
-      indexNodes.push(l[i].Entry)
+    for(var i=0;i<VolunteerNodeH.length;i++){
+      indexNodes.push(VolunteerNodeH[i].Entry)
     }
 
-    var numberOfIndexNodes = IndexNodesjs.length;
+    var numberOfIndexNodes = indexNodes.length;
     debug("Number of index nodes : "+numberOfIndexNodes);
                                                                     //Randomly select a node for indexing
     var selectedNumber = Math.floor(Math.random()*numberOfIndexNodes);
 
-    var key = IndexNodesjs[selectedNumber].Anchor_Text;
+    var key = indexNodes[selectedNumber];
+    debug("Key selected :"+key)
+    //debug(JSON.parse(key));
   }
   return key;
 }
@@ -58,7 +67,7 @@ function indexObject(object)
 
   var bridges = getBridges()
   if (bridges.length === 0){
-    debug('Expecting bridged app holodex, run: hcdev --bridgeTo=../holodex test')
+    debug('No bridges found')
     return null
   }
   var bridgeHash = bridges[0].ToApp
@@ -66,6 +75,26 @@ function indexObject(object)
 
   //var createIndex = send(indexNode,{type:"createIndex",content:object.content,hashOfObject:objHash,language:"English"})
   var createIndex = bridge(bridgeHash,"indexcontent","IndexContent",{content:object.obj.message,hashOfObject:object.hashPost,language:"English"})
+  return createIndex;
+}
+
+//Index function for wiki posts
+function indexPages(object)
+{
+  debug("indexObject function called..");
+  var indexNode = selectIndexNode();
+  debug("Selected index node : "+indexNode);
+
+  var bridges = getBridges()
+  if (bridges.length === 0){
+    debug('No bridges found')
+    return null
+  }
+  var bridgeHash = bridges[0].ToApp
+  debug("bridge hash : "+bridgeHash);
+
+  //var createIndex = send(indexNode,{type:"createIndex",content:object.content,hashOfObject:objHash,language:"English"})
+  var createIndex = bridge(bridgeHash,"indexcontent","IndexContent",{content:object.obj.htmlContent,hashOfObject:object.hashPost,language:"English"})
   return createIndex;
 }
 
@@ -77,7 +106,7 @@ function searchContent(StringOfsearchKeywords)
 
   var bridges = getBridges()
   if (bridges.length === 0){
-    debug('Expecting bridged app holodex, run: hcdev --bridgeTo=../holodex test')
+    debug('No bridge found')
     return null
   }
   var bridgeHash = bridges[0].ToApp
