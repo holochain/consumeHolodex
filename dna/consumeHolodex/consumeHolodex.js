@@ -63,12 +63,17 @@ function indexPages(object){
 	debug("pageObj");
 	debug(pageObj);
 	var createIndex = call("holodex","indexPages",pageObj);
+	debug("Back in indexPages :");
+	debug(createIndex);
 	var pageHash = JSON.parse(JSON.parse(createIndex));
+	debug("Page hash : "+pageHash);
 	return createIndex;
 }
 
 function getPage(hashOfPage){
 	var pageData = get(hashOfPage);
+	debug("pageData : ");
+	debug(pageData);
 	return pageData;
 }
 

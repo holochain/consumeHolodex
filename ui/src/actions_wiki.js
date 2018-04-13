@@ -19,12 +19,23 @@ $(document).ready(function(){
     var pages = queryWikiPages(inputString);
 
     console.log(pages);
-    for(var i=0; i<pages.length;i++){
-      pageS = JSON.stringify(pages[i]);
+    for(var i=0;i<pages.length;i++){
+      var savingPage = {
+        title : pages[i].title,
+        webLink : pages[i].link
+      };
+      displayPageWiki(savingPage,indexedDisplayWiki,"indexWiki");
+    }
+
+    for(let i=0; i<pages.length;i++){
+      let pageS = JSON.stringify(pages[i]);
       send("indexPages",pageS,function(response){
-        getPageFor = JSON.parse(JSON.parse(response));
-        getPageForDisplay();
-        setTimeout(function(){displayPageWiki(pageDisplay,indexedDisplayWiki,"indexWiki")}, 1500);
+        console.log(response);
+        //getPageFor = JSON.parse(JSON.parse(response));
+        //console.log("getPageFor : ");
+        //console.log(getPageFor);
+        //getPageForDisplay();
+        //setTimeout(function(){displayPageWiki(pageDisplay,indexedDisplayWiki,"indexWiki")}, 1500);
       });
     }
 
@@ -105,6 +116,8 @@ function getHtmlContent(urlText,titleText){
 function getPageForDisplay(){
     send("getPage",getPageFor,function(response){
       pageDisplay=response;
+      console.log("pageDisplay : ");
+      console.log(pageDisplay);
     });
 
 }
@@ -113,8 +126,8 @@ function getPageForDisplay(){
 function displayPageWiki(pageObj,id,countFor){
   console.log("display Page called on : ");
   console.log(pageObj);
-  if(id=="#iPages"){
-    var p = JSON.parse(pageObj);
+  if(id=="#sPages"){
+    var p = pageObj;
   }
   else{
     var p = pageObj;
@@ -123,7 +136,7 @@ function displayPageWiki(pageObj,id,countFor){
   htmlWebLink = p.webLink;
   var htmlDisplay = constructPostHTMLWiki(id,countFor);
 
-  if(id=="#iPages"){
+  /*if(id=="#iPages"){
     $(id).html(htmlDisplay);
     $('.card').last().hide();
     $('.card').last().show("300",function(){
@@ -131,12 +144,12 @@ function displayPageWiki(pageObj,id,countFor){
       //console.log($(this));
     });
   }
-  else{
+  else{*/
     $(id).html(htmlDisplay).hide();
     $(id).show('300',function(){
 
     });
-  }
+  //}
 }
 
 //function for constructing HTMl for display
@@ -172,20 +185,3 @@ function incrementCountWiki(countFor){
     htmlTagSearchCountWiki = htmlTagSearchCountWiki+1;
   }
 }
-
-//common function that can be used for calling a function
-/*function send(fn,data,resultFn) {
-    console.log("calling: " +fn+" with "+data);
-    $.post(
-        "/fn/consumeHolodex/"+fn,
-        data,
-        function(response) {
-            console.log("response: " + response);
-            resultFn(response);
-        }
-    ).error(function(response) {
-        console.log("response failed: " + response.responseText);
-        alert("This keyword does not exist in any of the posts!");
-    })
-    ;
-};*/

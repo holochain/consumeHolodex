@@ -94,7 +94,9 @@ function indexPages(object)
   debug("bridge hash : "+bridgeHash);
 
   //var createIndex = send(indexNode,{type:"createIndex",content:object.content,hashOfObject:objHash,language:"English"})
-  var createIndex = bridge(bridgeHash,"indexcontent","IndexContent",{content:object.obj.htmlContent,hashOfObject:object.hashPost,language:"English"})
+  var createIndex = bridge(bridgeHash,"indexcontent","IndexContent",{content:object.obj.htmlContent,hashOfObject:object.hashPage,language:"English"})
+  debug("Returned from bridging with holodex : returned object : ");
+  debug(createIndex);
   return createIndex;
 }
 
